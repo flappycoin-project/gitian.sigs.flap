@@ -8,8 +8,8 @@ Random members of the public are encouraged to participate in this process in or
 	mkdir workdir
 	cd workdir
 	git clone https://github.com/devrandom/gitian-builder.git
-	git clone https://github.com/litecoin-project/litecoin.git
-	git clone https://github.com/litecoin-project/gitian.sigs.ltc.git
+	git clone https://github.com/flappycoin-project/flappycoin.git
+	git clone https://github.com/flappycoin-project/gitian.sigs.flap.git
 
  Create Gitian Base VM Images
 
@@ -35,11 +35,11 @@ Random members of the public are encouraged to participate in this process in or
 
  Build intermediate dependencies and move them into inputs.
 
-	./bin/gbuild ../litecoin/contrib/gitian-descriptors/boost-win32.yml
+	./bin/gbuild ../flappycoin/contrib/gitian-descriptors/boost-win32.yml
 	mv build/out/inputs/boost-*.zip inputs/
-	./bin/gbuild ../litecoin/contrib/gitian-descriptors/deps-win32.yml
+	./bin/gbuild ../flappycoin/contrib/gitian-descriptors/deps-win32.yml
 	mv build/out/bitcoin*.zip inputs/
-	./bin/gbuild ../litecoin/contrib/gitian-descriptors/qt-win32.yml
+	./bin/gbuild ../flappycoin/contrib/gitian-descriptors/qt-win32.yml
 	mv build/out/qt-*zip inputs/
 
  Choose your GPG identity and git tag VERSION that you wish to build.
@@ -49,9 +49,9 @@ Random members of the public are encouraged to participate in this process in or
 
  Build litecoind and litecoin-qt on Linux32, Linux64, and Win32:
 
-	./bin/gbuild --commit litecoin=v${VERSION} ../litecoin/contrib/gitian-descriptors/gitian.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION} --destination ../gitian.sigs.ltc/ ../litecoin/contrib/gitian-descriptors/gitian.yml
-	./bin/gbuild --commit litecoin=v${VERSION} ../litecoin/contrib/gitian-descriptors/gitian-win32.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION}-win32 --destination ../gitian.sigs.ltc/ ../litecoin/contrib/gitian-descriptors/gitian-win32.yml
+	./bin/gbuild --commit litecoin=v${VERSION} ../flappycoin/contrib/gitian-descriptors/gitian.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION} --destination ../gitian.sigs.flap/ ../flappycoin/contrib/gitian-descriptors/gitian.yml
+	./bin/gbuild --commit litecoin=v${VERSION} ../flappycoin/contrib/gitian-descriptors/gitian-win32.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION}-win32 --destination ../gitian.sigs.flap/ ../flappycoin/contrib/gitian-descriptors/gitian-win32.yml
 
  It is customary to rename your directories in gitian.sigs.ltc to match your github username.  Submit a Pull Request against this repo.  If you are uncertain, please see previous commits for examples.
